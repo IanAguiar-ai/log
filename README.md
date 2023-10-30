@@ -1,13 +1,13 @@
 # Log
 Class to facilitate log creation
 
-#To install:
+# To install:
 
 ```
 pip install git+https://github.com/IanAguiar-ai/log.git
 ```
 
-#Example:
+# Example:
 
 ```
 from log import Log
