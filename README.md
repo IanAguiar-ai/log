@@ -1,2 +1,2 @@
-# log
+# Log
 Class to facilitate log creation
