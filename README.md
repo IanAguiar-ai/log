@@ -4,8 +4,7 @@ Class to facilitate log creation
 # Example:
 
 ```
-pip install git+https://github.com/NOME_USUARIO/NOME_REPOSITORIO.git@COMMIT_HASH
-
+pip install git+https://github.com/IanAguiar-ai/log.git
 ```
 
 ```
