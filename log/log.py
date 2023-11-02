@@ -33,7 +33,7 @@ class Log:
     """
     Creates a txt log that stores information along with the machine's local time
     """
-    def __init__(self, file:str = "log"):
+    def __init__(self, file:str = "log", check_thread:bool = False):
         """
         file: File name next to directory
         """
@@ -43,7 +43,8 @@ class Log:
         self.name = id(self)
         self.time_initial = time_now()
         self.create_file()
-        self.check()
+        if check_thread:
+            self.check()
 
     def create_file(self):
         """
