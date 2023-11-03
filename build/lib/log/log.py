@@ -13,7 +13,7 @@ def time_now():
     h = data.tm_hour
     m = data.tm_min
     s = data.tm_sec
-    return [d, mt, y, h, m, s]
+    return [y, mt, d, h, m, s]
 
 def check_continuous(obj, thread_main):
     """
@@ -37,6 +37,9 @@ class Log:
         """
         file: File name next to directory
         """
+        if file == "log":
+            t = time_now()
+            file += f"_{t[0]}_{t[1]:02}_{t[2]:02}"
         if file.find(".txt") == -1:
             file += ".txt"
         self.file = file
@@ -53,7 +56,7 @@ class Log:
         if not os.path.isfile(self.file):
             with open(self.file, 'w') as arq:
                 t = self.time_initial
-                arq.write(f"<log creation> {t[0]:02}/{t[1]:02}/{t[2]} - {t[3]:02}:{t[4]:02}:{t[5]:02}")
+                arq.write(f"<log creation> {t[2]:02}/{t[1]:02}/{t[0]} - {t[3]:02}:{t[4]:02}:{t[5]:02}")
 
         else:
             self.add(text = f"connecting to the log", description = "action")
@@ -71,7 +74,7 @@ class Log:
         if os.path.isfile(self.file):
             with open(self.file, 'w') as arq:
                 t = time_now()
-                arq.write(f"{old}\n<{description}> {t[0]:02}/{t[1]:02}/{t[2]} - {t[3]:02}:{t[4]:02}:{t[5]:02} | {text}")
+                arq.write(f"{old}\n<{description}> {t[2]:02}/{t[1]:02}/{t[0]} - {t[3]:02}:{t[4]:02}:{t[5]:02} | {text}")
         else:
             print("The log has been lost!")
 
@@ -125,14 +128,14 @@ class Log:
         if os.path.isfile(self.file):
             with open(self.file, 'w') as arq:
                 t = time_now()
-                arq.write(f"<log creation> {t[0]:02}/{t[1]:02}/{t[2]} - {t[3]:02}:{t[4]:02}:{t[5]:02}")
+                arq.write(f"<log creation> {t[2]:02}/{t[1]:02}/{t[0]} - {t[3]:02}:{t[4]:02}:{t[5]:02}")
         else:
             print("The log has been lost!")
 
     def __repr__(self):
         log = self.read()
         t = self.time_initial
-        text = f"Log: {self.file}\nCreation Log: {log['log creation'][0]}\nOpen log: {t[0]:02}/{t[1]:02}/{t[2]} - {t[3]:02}:{t[4]:02}:{t[5]:02}\nLines Log: {len(log['all'])}"
+        text = f"Log: {self.file}\nCreation Log: {log['log creation'][0]}\nOpen log: {t[2]:02}/{t[1]:02}/{t[0]} - {t[3]:02}:{t[4]:02}:{t[5]:02}\nLines Log: {len(log['all'])}"
         return text
 
 if __name__ == "__main__":
