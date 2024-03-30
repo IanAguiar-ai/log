@@ -1,3 +1,4 @@
+LICENSE
 README.md
 setup.py
 log/__init__.py
